@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg" }],
+    apple: [{ url: "/app-icon.png" }],
   },
   alternates: { canonical: site.url },
 };

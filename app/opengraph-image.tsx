@@ -29,16 +29,29 @@ export default function OpengraphImage() {
               width: 64,
               height: 64,
               borderRadius: 16,
-              background: "#f7f7f7",
-              color: "#0c0c0d",
+              background: "#0c8f5e",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 40,
-              fontWeight: 700,
+              gap: 6,
             }}
           >
-            S
+            <div
+              style={{
+                width: 12,
+                height: 28,
+                borderRadius: 4,
+                background: "#f5f5f4",
+              }}
+            />
+            <div
+              style={{
+                width: 12,
+                height: 28,
+                borderRadius: 4,
+                background: "rgba(255,255,255,0.42)",
+              }}
+            />
           </div>
           <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>
             {site.name}
