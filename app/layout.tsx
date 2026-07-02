@@ -1,21 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter_Tight, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 import { site } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { ScrollProgress } from "@/components/anim/scroll-progress";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
+// Aspekta substitute — a single-axis grotesque carried at 400 across the
+// whole type scale, hierarchy sculpted by size + negative tracking.
+const geistSans = Inter_Tight({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+// Roboto Mono — instrumentation voice for labels, counters, and metadata.
+const geistMono = Roboto_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -68,8 +74,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f8f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0c0d" },
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#222f30" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -93,6 +99,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ScrollProgress />
           <SmoothScroll>{children}</SmoothScroll>
           <Toaster />
         </ThemeProvider>

@@ -35,6 +35,19 @@ export function Hero() {
           "-=0.5",
         );
 
+      // Fade + lift the hero copy as it scrolls out of view.
+      gsap.to("[data-hero-copy]", {
+        y: -60,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.current,
+          start: "top top",
+          end: "60% top",
+          scrub: true,
+        },
+      });
+
       // Parallax drift on scroll.
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
         const speed = Number(el.dataset.parallax);
@@ -65,7 +78,10 @@ export function Hero() {
         <div className="absolute left-1/2 top-[-10%] h-[420px] w-[680px] -translate-x-1/2 rounded-full bg-brand/10 blur-[120px]" />
       </div>
 
-      <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div
+        data-hero-copy
+        className="mx-auto flex max-w-3xl flex-col items-center text-center"
+      >
         <div data-hero-eyebrow>
           <Badge>
             <Sparkles className="size-3 text-brand" />
@@ -73,7 +89,7 @@ export function Hero() {
           </Badge>
         </div>
 
-        <h1 className="mt-6 text-balance text-[2.6rem] font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-[4.5rem]">
+        <h1 className="mt-6 text-balance text-[2.7rem] font-medium leading-[1.0] tracking-[-0.03em] sm:text-6xl lg:text-[5rem]">
           <span className="sr-only">Shared expenses without the awkward math.</span>
           <span aria-hidden className="flex flex-wrap justify-center gap-x-[0.28em] gap-y-1 overflow-hidden">
             {headline.map((word, i) => (

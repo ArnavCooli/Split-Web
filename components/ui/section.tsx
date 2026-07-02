@@ -53,7 +53,7 @@ export function SectionHeader({
         </Reveal>
       )}
       <Reveal as="h2" delay={0.05}>
-        <span className="block max-w-3xl text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
+        <span className="block max-w-3xl text-balance text-3xl font-medium tracking-[-0.02em] sm:text-4xl lg:text-[2.85rem] lg:leading-[1.06]">
           <Balancer>{title}</Balancer>
         </span>
       </Reveal>

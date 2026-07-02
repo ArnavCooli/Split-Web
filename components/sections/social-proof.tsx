@@ -15,9 +15,7 @@ export function SocialProof() {
     <section className="border-y border-border bg-surface/40 py-14 container-px">
       <div className="mx-auto w-full max-w-6xl">
         <Reveal className="text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
-            Perfect for
-          </p>
+          <p className="lab-label text-muted-foreground">Perfect for</p>
         </Reveal>
 
         <Stagger
@@ -29,7 +27,7 @@ export function SocialProof() {
               key={label}
               className="reveal-init group flex flex-col items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-6 text-center shadow-soft transition-colors hover:border-border-strong"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-2 text-foreground transition-colors group-hover:bg-brand-soft group-hover:text-brand">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-2 text-foreground transition-colors group-hover:bg-brand group-hover:text-on-brand">
                 <Icon className="size-5" strokeWidth={1.75} />
               </span>
               <span className="text-sm font-medium text-foreground">

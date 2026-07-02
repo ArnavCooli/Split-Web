@@ -12,14 +12,13 @@ export function Logo({
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <span
         aria-hidden
-        className="relative flex h-8 w-8 items-center justify-center gap-[3px] rounded-[0.55rem] bg-[#0c8f5e]"
+        className="relative flex h-8 w-8 items-center justify-center gap-[3px] rounded-[0.5rem] bg-brand"
       >
-        <span className="block h-[14px] w-[6px] rounded-[2px] bg-[#f5f5f4]" />
-        <span className="block h-[14px] w-[6px] rounded-[2px] bg-white/40" />
-        <span className="absolute inset-0 rounded-[0.55rem] ring-1 ring-inset ring-white/10" />
+        <span className="block h-[14px] w-[5px] rounded-[2px] bg-[#222f30]" />
+        <span className="block h-[14px] w-[5px] rounded-[2px] bg-[#222f30]/45" />
       </span>
       {showWordmark && (
-        <span className="text-[1.05rem] font-semibold tracking-tight">
+        <span className="text-[1.15rem] font-medium tracking-[-0.02em]">
           Split
         </span>
       )}

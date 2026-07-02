@@ -74,7 +74,7 @@ export function NetGraph({ className }: { className?: string }) {
     >
       <div className="mb-2 flex items-center justify-between">
         <p className="text-sm font-semibold">Net settlement</p>
-        <span className="rounded-full bg-brand-soft px-2.5 py-1 text-[0.7rem] font-medium text-brand">
+        <span className="rounded-full bg-brand-soft px-2.5 py-1 text-[0.7rem] font-medium text-foreground">
           6 debts → 2 payments
         </span>
       </div>

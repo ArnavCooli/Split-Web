@@ -19,7 +19,7 @@ function Mark({ value, brand }: { value: Cell; brand?: boolean }) {
       <span
         className={cn(
           "inline-flex size-6 items-center justify-center rounded-full",
-          brand ? "bg-brand text-white" : "bg-brand-soft text-brand",
+          brand ? "bg-brand text-on-brand" : "bg-brand-soft text-foreground",
         )}
       >
         <Check className="size-3.5" strokeWidth={3} />

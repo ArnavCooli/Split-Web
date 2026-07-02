@@ -10,12 +10,12 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft",
+        "lab-label inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-muted-foreground",
         className,
       )}
       {...props}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />
+      <span className="lab-dot" aria-hidden />
       {children}
     </span>
   );

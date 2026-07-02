@@ -7,13 +7,13 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t border-border bg-surface/40 container-px"
+      className="bg-footer text-white container-px"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 py-14">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 py-16">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div className="max-w-sm space-y-3">
             <Logo />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-white/60">
               Built for roommates, couples, and friends everywhere.
             </p>
           </div>
@@ -26,7 +26,7 @@ export function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="lab-label text-white/55 transition-colors hover:text-white"
               >
                 {link.label}
               </a>
@@ -34,12 +34,12 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p className="lab-label text-white/45">
             © {year} {site.name}. All rights reserved.
           </p>
-          <p className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />
+          <p className="lab-label flex items-center gap-2 text-white/45">
+            <span className="lab-dot" aria-hidden />
             {site.tagline}
           </p>
         </div>

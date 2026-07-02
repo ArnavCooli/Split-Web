@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ScanLine, Hand, PieChart, GitMerge, Check } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/anim/reveal";
+import { Parallax } from "@/components/anim/parallax";
 import { cn } from "@/lib/utils";
 import { ReceiptScan } from "@/components/mockups/receipt-scan";
 import { ItemAssign } from "@/components/mockups/item-assign";
@@ -62,11 +63,11 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
         className={cn("flex flex-col gap-5", flip && "lg:order-2")}
         y={24}
       >
-        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
+        <span className="lab-label inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-muted-foreground">
           <Icon className="size-3.5 text-brand" />
           {eyebrow}
         </span>
-        <h3 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h3 className="text-balance text-2xl font-medium tracking-[-0.02em] sm:text-3xl">
           {title}
         </h3>
         <p className="max-w-md text-base leading-relaxed text-muted-foreground">
@@ -75,7 +76,7 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
         <ul className="mt-1 space-y-2.5">
           {points.map((point) => (
             <li key={point} className="flex items-center gap-3 text-sm">
-              <span className="flex size-5 items-center justify-center rounded-full bg-brand-soft text-brand">
+              <span className="flex size-5 items-center justify-center rounded-full bg-brand text-on-brand">
                 <Check className="size-3" strokeWidth={3} />
               </span>
               <span className="text-foreground">{point}</span>
@@ -89,10 +90,13 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
         y={32}
         delay={0.05}
       >
-        <div className="relative w-full max-w-sm">
+        <Parallax
+          className="relative w-full max-w-sm"
+          y={flip ? 40 : -40}
+        >
           <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-brand/5 blur-2xl" />
           {visual}
-        </div>
+        </Parallax>
       </Reveal>
     </div>
   );

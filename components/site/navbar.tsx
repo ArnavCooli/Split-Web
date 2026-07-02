@@ -34,9 +34,9 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "flex w-full max-w-6xl items-center justify-between rounded-full px-3 py-2 transition-all duration-300 sm:px-4",
+          "flex w-full max-w-6xl items-center justify-between rounded-2xl px-3 py-2 transition-all duration-300 sm:px-4",
           scrolled
-            ? "border border-border bg-surface/80 shadow-soft backdrop-blur-xl"
+            ? "border border-border bg-background/70 backdrop-blur-xl"
             : "border border-transparent bg-transparent",
         )}
       >
@@ -49,7 +49,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="lab-label rounded-full border border-transparent px-3.5 py-1.5 text-muted-foreground transition-colors hover:border-border hover:text-foreground"
             >
               {link.label}
             </a>

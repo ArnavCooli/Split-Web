@@ -21,7 +21,7 @@ export function Settlement({ className }: { className?: string }) {
     >
       <div className="mb-1 flex items-center justify-between">
         <p className="text-sm font-semibold">Settle up</p>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 text-[0.7rem] font-medium text-brand">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 text-[0.7rem] font-medium text-foreground">
           <Check className="size-3" strokeWidth={3} />
           Balanced
         </span>

@@ -6,46 +6,58 @@
 /* ------------------------------------------------------------------ */
 /*  Design tokens                                                      */
 /* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/*  Integrated Biosciences — bioluminescent laboratory palette         */
+/*  Light sections = Bone White canvas, Paper cards. Flat, hairline    */
+/*  borders, and one rationed Bioluminescent Lime signal.              */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #f8f8f6;
-  --surface: #ffffff;
-  --surface-2: #f2f2ef;
-  --foreground: #111111;
-  --muted-foreground: #666666;
-  --border: #e7e7e7;
-  --border-strong: #d8d8d4;
+  --background: #f7f7f5; /* Bone White canvas */
+  --surface: #ffffff; /* Paper */
+  --surface-2: #e7e8e1; /* Tissue */
+  --foreground: #222f30; /* Abyssal Ink */
+  --muted-foreground: #4d5757; /* Graphite */
+  --border: #c9cbbe; /* Lichen hairline */
+  --border-strong: #4d5757;
 
-  /* near-black accent used for primary buttons (Apple/Linear feel) */
-  --accent: #1a1a1a;
+  /* opposite-surface primary action (dark button on light canvas) */
+  --accent: #222f30;
   --accent-foreground: #ffffff;
 
-  /* subtle deep-emerald brand accent (checks, dots, highlights) */
-  --brand: #0c7a53;
-  --brand-soft: rgba(12, 122, 83, 0.08);
+  /* Bioluminescent Lime — the single rationed signal */
+  --brand: #cef79e;
+  --brand-soft: rgba(206, 247, 158, 0.35);
+  /* dark icon/text placed on top of a lime fill */
+  --on-brand: #222f30;
 
-  --ring: rgba(17, 17, 17, 0.12);
-  --shadow-color: 220 12% 30%;
+  --ring: rgba(34, 47, 48, 0.14);
+  --shadow-color: 160 6% 20%;
 
-  --radius: 0.875rem;
+  --footer: #000000; /* Void */
+
+  --radius: 1rem;
 }
 
 .dark {
-  --background: #0c0c0d;
-  --surface: #131314;
-  --surface-2: #19191b;
-  --foreground: #f7f7f7;
-  --muted-foreground: #a1a1a1;
-  --border: #242424;
-  --border-strong: #2f2f31;
+  --background: #222f30; /* Abyssal Ink canvas */
+  --surface: #263435;
+  --surface-2: #2d3c3d;
+  --foreground: #f7f7f5;
+  --muted-foreground: #a4adaa;
+  --border: #3c4a49;
+  --border-strong: #4d5757;
 
-  --accent: #f7f7f7;
-  --accent-foreground: #0c0c0d;
+  --accent: #f7f7f5;
+  --accent-foreground: #222f30;
 
-  --brand: #34c98b;
-  --brand-soft: rgba(52, 201, 139, 0.1);
+  --brand: #cef79e;
+  --brand-soft: rgba(206, 247, 158, 0.12);
+  --on-brand: #222f30;
 
-  --ring: rgba(255, 255, 255, 0.16);
+  --ring: rgba(206, 247, 158, 0.32);
   --shadow-color: 0 0% 0%;
+
+  --footer: #000000;
 }
 
 /* ------------------------------------------------------------------ */
@@ -62,21 +74,25 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-footer: var(--footer);
   --color-ring: var(--ring);
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-geist-sans), "Inter Tight", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-mono: var(--font-geist-mono), "Roboto Mono", ui-monospace, monospace;
 
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 0.375rem);
   --radius-2xl: calc(var(--radius) + 0.75rem);
+  --radius-3xl: calc(var(--radius) + 1.5rem);
 
-  --shadow-soft: 0 1px 2px hsl(var(--shadow-color) / 0.04),
-    0 4px 12px hsl(var(--shadow-color) / 0.05);
-  --shadow-card: 0 1px 1px hsl(var(--shadow-color) / 0.04),
-    0 8px 24px -8px hsl(var(--shadow-color) / 0.12);
-  --shadow-float: 0 2px 4px hsl(var(--shadow-color) / 0.04),
-    0 24px 48px -16px hsl(var(--shadow-color) / 0.2);
+  /* The lab language is deliberately flat: depth comes from surface
+     contrast and hairline borders, never elevation. */
+  --shadow-soft: none;
+  --shadow-card: none;
+  --shadow-float: none;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -106,7 +122,7 @@
 
   ::selection {
     background-color: var(--brand);
-    color: #ffffff;
+    color: var(--on-brand);
   }
 
   :focus-visible {
@@ -160,6 +176,67 @@
   mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
 }
 
+/* ---- Integrated Biosciences lab primitives --------------------------- */
+
+/* Monospaced instrumentation label — nav items, eyebrows, metadata. */
+.lab-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.23;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* 6px bioluminescent tag dot. */
+.lab-dot {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background-color: var(--brand);
+  box-shadow: 0 0 0 0 var(--brand);
+  animation: lab-pulse 3.2s ease-in-out infinite;
+}
+
+/* 40x40 lime arrow button — the only place the accent fills a shape. */
+.arrow-cta {
+  display: inline-flex;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--brand);
+  color: var(--on-brand);
+  transition: transform 0.3s var(--ease-out-quint);
+}
+.arrow-cta:hover {
+  transform: translateX(3px);
+}
+
+/* Scroll progress bar (lime signal lamp) pinned to the top edge. */
+.scroll-progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 60;
+  height: 2px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--brand) 40%, transparent),
+    var(--brand)
+  );
+  box-shadow: 0 0 12px 0 color-mix(in srgb, var(--brand) 50%, transparent);
+  pointer-events: none;
+}
+
+/* Draws a hairline in as a section scrolls into view. */
+.lab-rule {
+  transform-origin: 0 50%;
+}
+
 /* Elements GSAP reveals start hidden, but only when JS runs.
    Falls back to visible for no-JS / reduced motion. */
 .reveal-init {
@@ -175,7 +252,8 @@
   }
   .animate-float,
   .animate-scanline,
-  .animate-marquee {
+  .animate-marquee,
+  .lab-dot {
     animation: none !important;
   }
 }
@@ -222,6 +300,16 @@
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes lab-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 0%, transparent);
   }
 }
 

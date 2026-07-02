@@ -62,7 +62,7 @@ function ScreenAssign() {
 function ScreenSettle() {
   return (
     <div className="flex aspect-[9/17] flex-col items-center justify-center gap-4 bg-surface-2 p-5 pt-9 text-center">
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-soft text-brand">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-on-brand">
         <CheckCircle2 className="size-9" strokeWidth={1.75} />
       </span>
       <div>

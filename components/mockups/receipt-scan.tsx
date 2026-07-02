@@ -84,7 +84,7 @@ export function ReceiptScan({ className }: { className?: string }) {
             <span className="flex items-center gap-2.5">
               <span
                 data-check
-                className="flex size-4 items-center justify-center rounded-full bg-brand text-white"
+                className="flex size-4 items-center justify-center rounded-full bg-brand text-on-brand"
               >
                 <Check className="size-2.5" strokeWidth={3} />
               </span>
