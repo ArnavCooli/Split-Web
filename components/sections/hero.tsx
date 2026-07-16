@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { Play, Sparkles } from "lucide-react";
+import { Play } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ReceiptScan } from "@/components/mockups/receipt-scan";
 import { ItemAssign } from "@/components/mockups/item-assign";
 import { Settlement } from "@/components/mockups/settlement";
@@ -21,12 +20,12 @@ export function Hero() {
         defaults: { ease: "power3.out", duration: 0.9 },
       });
 
-      tl.from("[data-hero-eyebrow]", { opacity: 0, y: 12, duration: 0.6 })
-        .from(
-          "[data-hero-word]",
-          { yPercent: 120, opacity: 0, stagger: 0.07, duration: 1 },
-          "-=0.2",
-        )
+      tl.from("[data-hero-word]", {
+        yPercent: 120,
+        opacity: 0,
+        stagger: 0.07,
+        duration: 1,
+      })
         .from("[data-hero-sub]", { opacity: 0, y: 16 }, "-=0.55")
         .from("[data-hero-cta]", { opacity: 0, y: 16 }, "-=0.6")
         .from(
@@ -82,13 +81,6 @@ export function Hero() {
         data-hero-copy
         className="mx-auto flex max-w-3xl flex-col items-center text-center"
       >
-        <div data-hero-eyebrow>
-          <Badge>
-            <Sparkles className="size-3 text-brand" />
-            Now in private beta
-          </Badge>
-        </div>
-
         <h1 className="mt-6 text-balance text-[2.7rem] font-medium leading-[1.0] tracking-[-0.03em] sm:text-6xl lg:text-[5rem]">
           <span className="sr-only">Shared expenses without the awkward math.</span>
           <span aria-hidden className="flex flex-wrap justify-center gap-x-[0.28em] gap-y-1 overflow-hidden">

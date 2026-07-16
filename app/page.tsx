@@ -6,7 +6,6 @@ import { Problem } from "@/components/sections/problem";
 import { Features } from "@/components/sections/features";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { AISection } from "@/components/sections/ai";
-import { Testimonials } from "@/components/sections/testimonials";
 import { Comparison } from "@/components/sections/comparison";
 import { CTA } from "@/components/sections/cta";
 
@@ -21,7 +20,6 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <AISection />
-        <Testimonials />
         <Comparison />
         <CTA />
       </main>

@@ -12,8 +12,8 @@ type WaitlistFormProps = {
 };
 
 /**
- * Inline email capture. There is no backend (landing page only), so this
- * simulates a request and confirms with a toast + inline success state.
+ * Inline email capture. Submits to the `/api/waitlist` route handler, which
+ * stores the email in Supabase, then confirms with a toast + inline success.
  */
 export function WaitlistForm({
   className,
@@ -34,11 +34,28 @@ export function WaitlistForm({
     }
 
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 900));
-    setStatus("done");
-    toast.success("You're on the list.", {
-      description: "We'll email you the moment Split is ready.",
-    });
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error ?? "Something went wrong.");
+      }
+
+      setStatus("done");
+      toast.success("You're on the list.", {
+        description: "We'll email you the moment Split is ready.",
+      });
+    } catch (err) {
+      setStatus("idle");
+      toast.error(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    }
   }
 
   return (

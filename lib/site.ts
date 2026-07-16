@@ -13,7 +13,6 @@ export const navLinks = [
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Compare", href: "#compare" },
-  { label: "Testimonials", href: "#testimonials" },
 ] as const;
 
 export const footerLinks = [
