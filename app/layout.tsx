@@ -72,6 +72,45 @@ export const metadata: Metadata = {
   alternates: { canonical: site.url },
 };
 
+// Structured data — surfaces Split as a product to search engines and lets
+// rich results render the name, category, price, and description directly.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      email: site.email,
+      logo: `${site.url}/app-icon.png`,
+      description: site.description,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: site.name,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "iOS, Android",
+      url: site.url,
+      description: site.description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+  ],
+};
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
@@ -93,6 +132,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
