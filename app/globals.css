@@ -303,6 +303,20 @@
   }
 }
 
+/* Navbar entrance — CSS-driven so it never depends on a JS animation frame
+   loop that mobile browsers can throttle until first scroll (which left the
+   bar invisible on load). */
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes lab-pulse {
   0%,
   100% {
