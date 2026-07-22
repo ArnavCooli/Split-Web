@@ -5,9 +5,8 @@ import { Play } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/button";
-import { ReceiptScan } from "@/components/mockups/receipt-scan";
-import { ItemAssign } from "@/components/mockups/item-assign";
-import { Settlement } from "@/components/mockups/settlement";
+import { IPhoneFrame } from "@/components/ui/iphone-frame";
+import { screens } from "@/lib/screens";
 
 const headline = ["Shared", "expenses", "without", "the", "awkward", "math."];
 
@@ -125,33 +124,49 @@ export function Hero() {
         </div>
       </div>
 
-      {/* mockup stage */}
-      <div className="relative mx-auto mt-16 flex h-[440px] max-w-5xl items-center justify-center sm:mt-20 sm:h-[480px]">
+      {/* mockup stage — real app on real iPhones */}
+      <div className="relative mx-auto mt-14 flex max-w-5xl justify-center sm:mt-16">
         <div
           data-hero-card
-          data-parallax="-40"
-          className="absolute left-0 top-6 hidden w-72 lg:block"
+          data-parallax="-50"
+          className="absolute -bottom-2 left-2 hidden w-[188px] lg:block xl:left-16"
         >
-          <div className="animate-float [animation-delay:-2s]">
-            <ItemAssign />
+          <div className="animate-float rotate-[-8deg] [animation-delay:-2s]">
+            <IPhoneFrame
+              src={screens.scanResult.src}
+              alt={screens.scanResult.alt}
+              priority
+              className="max-w-full"
+            />
           </div>
         </div>
 
         <div
           data-hero-card
-          data-parallax="20"
-          className="relative z-10 w-full max-w-sm"
+          data-parallax="24"
+          className="relative z-10 w-[248px] sm:w-[268px]"
         >
-          <ReceiptScan />
+          <IPhoneFrame
+            src={screens.home.src}
+            alt={screens.home.alt}
+            priority
+            glow
+            className="max-w-full"
+          />
         </div>
 
         <div
           data-hero-card
-          data-parallax="-60"
-          className="absolute right-0 top-10 hidden w-72 lg:block"
+          data-parallax="-70"
+          className="absolute -bottom-2 right-2 hidden w-[188px] lg:block xl:right-16"
         >
-          <div className="animate-float [animation-delay:-4s]">
-            <Settlement />
+          <div className="animate-float rotate-[8deg] [animation-delay:-4s]">
+            <IPhoneFrame
+              src={screens.group.src}
+              alt={screens.group.alt}
+              priority
+              className="max-w-full"
+            />
           </div>
         </div>
       </div>

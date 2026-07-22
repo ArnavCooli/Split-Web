@@ -1,111 +1,37 @@
-import { Camera, Hand, CheckCircle2, ScanLine } from "lucide-react";
+import { Camera, Hand, CheckCircle2 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Stagger } from "@/components/anim/stagger";
-import { PhoneFrame, Avatar, people } from "@/components/mockups/shared";
+import { IPhoneFrame } from "@/components/ui/iphone-frame";
+import { screens, type ScreenKey } from "@/lib/screens";
 import { cn } from "@/lib/utils";
 
-/* --- tiny phone screens, one per step --- */
-
-function ScreenSnap() {
-  return (
-    <div className="relative aspect-[9/17] bg-[#0c0c0d] p-4 pt-9">
-      <div className="absolute inset-x-5 top-9 bottom-20 overflow-hidden rounded-xl border border-white/10 bg-white/[0.04]">
-        <div className="absolute inset-3 rounded-md border border-dashed border-white/25" />
-        <div className="animate-scanline absolute inset-x-3 h-px bg-brand shadow-[0_0_12px_2px] shadow-brand/60" />
-        <div className="absolute inset-x-3 top-6 space-y-2">
-          <div className="h-2 w-2/3 rounded-full bg-white/15" />
-          <div className="h-2 w-1/2 rounded-full bg-white/10" />
-          <div className="h-2 w-3/4 rounded-full bg-white/10" />
-        </div>
-      </div>
-      <div className="absolute inset-x-0 bottom-5 flex flex-col items-center gap-2">
-        <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-medium text-white">
-          <ScanLine className="size-3" /> Reading receipt…
-        </span>
-        <span className="h-12 w-12 rounded-full border-4 border-white/80 bg-white/20" />
-      </div>
-    </div>
-  );
-}
-
-function ScreenAssign() {
-  const rows = [
-    { label: "Cold brew", who: [people.maya] },
-    { label: "Sourdough", who: [people.leo, people.sam] },
-    { label: "Eggs", who: [people.avery] },
-    { label: "Avocados", who: [people.maya, people.leo] },
-  ];
-  return (
-    <div className="aspect-[9/17] bg-surface-2 p-4 pt-9">
-      <p className="mb-3 text-xs font-semibold text-foreground">Assign items</p>
-      <div className="space-y-2">
-        {rows.map((r) => (
-          <div
-            key={r.label}
-            className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2.5"
-          >
-            <span className="text-xs font-medium text-foreground">
-              {r.label}
-            </span>
-            <span className="flex -space-x-1.5">
-              {r.who.map((p, i) => (
-                <Avatar key={i} person={p} size="xs" />
-              ))}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ScreenSettle() {
-  return (
-    <div className="flex aspect-[9/17] flex-col items-center justify-center gap-4 bg-surface-2 p-5 pt-9 text-center">
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-on-brand">
-        <CheckCircle2 className="size-9" strokeWidth={1.75} />
-      </span>
-      <div>
-        <p className="text-sm font-semibold text-foreground">All settled</p>
-        <p className="mt-1 text-xs text-muted-foreground">
-          2 payments cleared the group
-        </p>
-      </div>
-      <div className="w-full space-y-2">
-        <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2 text-xs">
-          <span className="text-muted-foreground">Leo → Maya</span>
-          <span className="font-semibold text-foreground">$24.50</span>
-        </div>
-        <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2 text-xs">
-          <span className="text-muted-foreground">Avery → Maya</span>
-          <span className="font-semibold text-foreground">$11.75</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const steps = [
+const steps: {
+  n: string;
+  icon: typeof Camera;
+  title: string;
+  body: string;
+  screen: ScreenKey;
+}[] = [
   {
     n: "01",
     icon: Camera,
     title: "Snap a receipt.",
-    body: "Point your camera at any receipt. Split reads it instantly.",
-    screen: <ScreenSnap />,
+    body: "Point your camera at any receipt. Split reads it on-device in seconds.",
+    screen: "scanEmpty",
   },
   {
     n: "02",
     icon: Hand,
-    title: "Assign items.",
-    body: "Tap to choose who shares what. Even splits or item-by-item.",
-    screen: <ScreenAssign />,
+    title: "Split it your way.",
+    body: "Confirm the items, then split evenly, by percent, or to the exact cent.",
+    screen: "scanResult",
   },
   {
     n: "03",
     icon: CheckCircle2,
     title: "Settle instantly.",
-    body: "See the fewest payments needed and clear the balance in a tap.",
-    screen: <ScreenSettle />,
+    body: "Split reduces the group to the fewest payments and clears it in a tap.",
+    screen: "settleUp",
   },
 ];
 
@@ -127,7 +53,11 @@ export function HowItWorks() {
             key={n}
             className="reveal-init flex flex-col items-center text-center"
           >
-            <PhoneFrame className="mb-8">{screen}</PhoneFrame>
+            <IPhoneFrame
+              src={screens[screen].src}
+              alt={screens[screen].alt}
+              className="mb-8 max-w-[240px]"
+            />
             <div
               className={cn(
                 "flex items-center gap-3",

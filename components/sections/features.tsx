@@ -1,13 +1,10 @@
-import type { ReactNode } from "react";
-import { ScanLine, Hand, PieChart, GitMerge, Check } from "lucide-react";
+import { ScanLine, SlidersHorizontal, Globe, GitMerge, Check } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/anim/reveal";
 import { Parallax } from "@/components/anim/parallax";
 import { cn } from "@/lib/utils";
-import { ReceiptScan } from "@/components/mockups/receipt-scan";
-import { ItemAssign } from "@/components/mockups/item-assign";
-import { SplitChart } from "@/components/mockups/split-chart";
-import { NetGraph } from "@/components/mockups/net-graph";
+import { IPhoneFrame } from "@/components/ui/iphone-frame";
+import { screens, type ScreenKey } from "@/lib/screens";
 
 type Feature = {
   icon: typeof ScanLine;
@@ -15,7 +12,7 @@ type Feature = {
   title: string;
   body: string;
   points: string[];
-  visual: ReactNode;
+  screen: ScreenKey;
 };
 
 const features: Feature[] = [
@@ -23,38 +20,38 @@ const features: Feature[] = [
     icon: ScanLine,
     eyebrow: "AI Receipt Scanning",
     title: "Scan a receipt. We're already doing the math.",
-    body: "Take a photo and Split automatically itemizes every purchase — line items, taxes, and totals, organized in seconds.",
-    points: ["Reads any printed receipt", "Itemized in under a second"],
-    visual: <ReceiptScan />,
+    body: "Point your camera at any receipt and Split reads it on-device, then structures every line item, tax, and total in seconds.",
+    points: ["Reads any printed receipt", "Merges duplicates and flags low confidence"],
+    screen: "scanResult",
   },
   {
-    icon: Hand,
-    eyebrow: "Item-Level Splitting",
-    title: "Pay only for what you actually used.",
-    body: "Assign individual items to roommates with a tap. The cold brew is yours, the eggs are shared — Split keeps everyone honest.",
-    points: ["Assign per item, not per bill", "Split single items any number of ways"],
-    visual: <ItemAssign />,
+    icon: SlidersHorizontal,
+    eyebrow: "Flexible Splitting",
+    title: "Split it evenly, by percent, or to the cent.",
+    body: "Choose equal shares, custom percentages, or exact amounts — and pick exactly who's included. Split does the per-person math live.",
+    points: ["Equal, percentage, or exact amounts", "See each person's share as you edit"],
+    screen: "expenseUsd",
   },
   {
-    icon: PieChart,
-    eyebrow: "Asymmetric Splits",
-    title: "Because life isn't always 50/50.",
-    body: "Split rent, utilities, and subscriptions using custom percentages or fixed shares that match how you actually live.",
-    points: ["Percentages, shares, or exact amounts", "Save splits for recurring bills"],
-    visual: <SplitChart />,
+    icon: Globe,
+    eyebrow: "Multi-Currency",
+    title: "Travel without the currency headache.",
+    body: "Log an expense in any currency and Split converts it at the live rate, so the whole group settles in the money they actually use.",
+    points: ["Live exchange rates built in", "Enter once, everyone sees their own total"],
+    screen: "expenseEur",
   },
   {
     icon: GitMerge,
     eyebrow: "Net Settlement",
     title: "One payment instead of five.",
-    body: "Split calculates the smallest number of transactions needed to settle everyone up, so the group clears its balance in a tap.",
-    points: ["Minimizes total transactions", "Settle the whole group at once"],
-    visual: <NetGraph />,
+    body: "Split calculates the fewest transactions needed to settle everyone up, so the group clears its whole balance in a single tap.",
+    points: ["Optimizes the group to minimal payments", "Mark it all settled at once"],
+    screen: "settleUp",
   },
 ];
 
 function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
-  const { icon: Icon, eyebrow, title, body, points, visual } = feature;
+  const { icon: Icon, eyebrow, title, body, points, screen } = feature;
   const flip = index % 2 === 1;
 
   return (
@@ -91,11 +88,15 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
         delay={0.05}
       >
         <Parallax
-          className="relative w-full max-w-sm"
+          className="relative flex w-full justify-center"
           y={flip ? 40 : -40}
         >
-          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-brand/5 blur-2xl" />
-          {visual}
+          <div className="absolute inset-0 -z-10 mx-auto max-w-[260px] rounded-[3rem] bg-brand/10 blur-[60px]" />
+          <IPhoneFrame
+            src={screens[screen].src}
+            alt={screens[screen].alt}
+            className="max-w-[262px]"
+          />
         </Parallax>
       </Reveal>
     </div>
