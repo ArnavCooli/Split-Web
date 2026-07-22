@@ -63,7 +63,9 @@ export function WaitlistForm({
       onSubmit={onSubmit}
       data-source={source}
       className={cn(
-        "group flex w-full max-w-md items-center gap-1.5 rounded-full border border-border-strong bg-surface p-1.5 shadow-soft transition focus-within:ring-2 focus-within:ring-foreground/15",
+        // Mobile: stack the input and button so the button sits below the field
+        // instead of being crammed into the pill. sm+: the inline pill layout.
+        "group flex w-full max-w-md flex-col gap-2 rounded-3xl border border-border-strong bg-surface p-2 shadow-soft transition focus-within:ring-2 focus-within:ring-foreground/15 sm:flex-row sm:items-center sm:gap-1.5 sm:rounded-full sm:p-1.5",
         className,
       )}
     >
@@ -85,7 +87,7 @@ export function WaitlistForm({
       <button
         type="submit"
         disabled={status !== "idle"}
-        className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-accent-foreground transition active:scale-[0.98] disabled:opacity-80"
+        className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-accent-foreground transition active:scale-[0.98] disabled:opacity-80 sm:w-auto sm:shrink-0"
       >
         {status === "loading" && <Loader2 className="size-4 animate-spin" />}
         {status === "done" && <Check className="size-4" />}

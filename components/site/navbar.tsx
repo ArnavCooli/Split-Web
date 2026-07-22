@@ -28,12 +28,9 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center pt-3 container-px">
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      <nav
         className={cn(
-          "flex w-full max-w-6xl items-center justify-between rounded-2xl px-3 py-2 transition-all duration-300 sm:px-4",
+          "flex w-full max-w-6xl items-center justify-between rounded-2xl px-3 py-2 transition-all duration-300 animate-[nav-in_0.6s_cubic-bezier(0.22,1,0.36,1)_both] sm:px-4",
           scrolled
             ? "border border-border bg-background/70 backdrop-blur-xl"
             : "border border-transparent bg-transparent",
@@ -72,7 +69,7 @@ export function Navbar() {
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {open && (
         <motion.div
