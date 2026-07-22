@@ -7,7 +7,6 @@ import { navLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,14 +56,12 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle />
           <Button asChild size="sm">
             <a href="#waitlist">Join Waitlist</a>
           </Button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
